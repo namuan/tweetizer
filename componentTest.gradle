@@ -1,0 +1,25 @@
+sourceSets {
+    componentTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/componentTest/java')
+        }
+        resources.srcDir file('src/componentTest/resources')
+    }
+}
+configurations {
+    componentTestImplementation.extendsFrom testImplementation
+}
+
+task componentTest(type: Test) {
+    dependsOn assemble
+    testClassesDirs = sourceSets.componentTest.output.classesDirs
+    classpath = sourceSets.componentTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+    testLogging.showStandardStreams = true
+    mustRunAfter(test)
+}
+
+check.dependsOn(componentTest)
+
