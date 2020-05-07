@@ -1,0 +1,25 @@
+sourceSets {
+    functionalTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/functionalTest/java')
+        }
+        resources.srcDir file('src/functionalTest/resources')
+    }
+}
+configurations {
+    functionalTestImplementation.extendsFrom testImplementation
+}
+
+task functionalTest(type: Test) {
+    dependsOn assemble
+    testClassesDirs = sourceSets.functionalTest.output.classesDirs
+    classpath = sourceSets.functionalTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+    testLogging.showStandardStreams = true
+    mustRunAfter(test)
+}
+
+check.dependsOn(functionalTest)
+
