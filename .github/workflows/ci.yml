@@ -11,5 +11,6 @@ jobs:
         with:
           java-version: 14
         id: java
-      - name: Echo
-        run: echo 'The time was ${{ steps.java.outputs.time }}'
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: build
