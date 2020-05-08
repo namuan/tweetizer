@@ -1,6 +1,9 @@
 package dev.deskriders.tweetizer.service;
 
-public class TwitterService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class TimelineService {
     public void processMentions() {
 
     }

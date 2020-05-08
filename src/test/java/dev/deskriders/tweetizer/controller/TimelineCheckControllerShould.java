@@ -1,6 +1,6 @@
 package dev.deskriders.tweetizer.controller;
 
-import dev.deskriders.tweetizer.service.TwitterService;
+import dev.deskriders.tweetizer.service.TimelineService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 class TimelineCheckControllerShould {
 
     @Mock
-    private TwitterService twitterService;
+    private TimelineService timelineService;
 
     @InjectMocks
     private TimelineCheckController controller;
@@ -22,6 +22,6 @@ class TimelineCheckControllerShould {
     void delegateToService() {
         controller.checkTimeline();
 
-        verify(twitterService).processMentions();
+        verify(timelineService).processMentions();
     }
 }
