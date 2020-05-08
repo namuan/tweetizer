@@ -20,7 +20,7 @@ dependencies {
     functionalTestImplementation 'de.monochromata.cucumber:reporting-plugin:4.0.48'
 }
 
-task functionalTest(type: Test) {
+task functionalTest(type: Test, group: 'verification') {
     dependsOn assemble
     testClassesDirs = sourceSets.functionalTest.output.classesDirs
     classpath = sourceSets.functionalTest.runtimeClasspath

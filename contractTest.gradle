@@ -1,0 +1,6 @@
+task contractTests(type: Test, group: 'verification') {
+    useJUnitPlatform()
+    failFast = true
+    outputs.upToDateWhen { false }
+    include('**/contracts/*.*')
+}

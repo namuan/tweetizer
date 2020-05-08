@@ -33,3 +33,6 @@ out/
 
 ### Generated ###
 target/
+
+### Secrets ###
+twitter4j.properties

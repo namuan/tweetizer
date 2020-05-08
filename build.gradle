@@ -18,6 +18,8 @@ repositories {
 	mavenCentral()
 }
 
+
 apply from: 'dependencies.gradle'
 apply from: 'testDependencies.gradle'
 apply from: 'functionalTest.gradle'
+apply from: 'contractTest.gradle'

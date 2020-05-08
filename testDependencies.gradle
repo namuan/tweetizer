@@ -7,4 +7,6 @@ dependencies {
 test {
 	useJUnitPlatform()
 	failFast = true
+
+	exclude('**/contracts/*.*')
 }
