@@ -21,6 +21,7 @@ dependencies {
     functionalTestImplementation 'io.rest-assured:rest-assured:4.2.0'
     functionalTestImplementation 'io.rest-assured:json-path:4.2.0'
     functionalTestImplementation 'io.rest-assured:xml-path:4.2.0'
+    functionalTestImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock:2.2.1.RELEASE'
 }
 
 task functionalTest(type: Test, group: 'verification') {

@@ -1,27 +1,39 @@
 package dev.deskriders.tweetizer.functional.scenarios;
 
 
+import com.github.tomakehurst.wiremock.WireMockServer;
 import dev.deskriders.tweetizer.TweetizerApplication;
 import dev.deskriders.tweetizer.functional.framework.FakeTwitter;
 import dev.deskriders.tweetizer.functional.framework.TweetizerClient;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import twitter4j.StatusUpdate;
+
+import java.io.IOException;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 
 @SpringBootTest(webEnvironment = DEFINED_PORT, classes = TweetizerApplication.class)
 @CucumberContextConfiguration
+@TestPropertySource("classpath:application-test.properties")
 public class TwitterDigestSteps {
 
-    private final FakeTwitter fakeTwitter = new FakeTwitter();
     private final TweetizerClient tweetizerClient = new TweetizerClient();
 
+    private FakeTwitter fakeTwitter;
+
+    @Autowired
+    private WireMockServer wireMockService;
+
     @Given("a tagged tweet")
-    public void aTaggedTweet() {
+    public void aTaggedTweet() throws IOException {
         StatusUpdate statusUpdate = new StatusUpdate("Hello World");
         fakeTwitter.postStatusWithMention(statusUpdate);
     }
@@ -35,5 +47,15 @@ public class TwitterDigestSteps {
     public void iShouldReplyBackWithAcknowledgement() {
         StatusUpdate acknowledgementStatusUpdate = new StatusUpdate("Hello Back");
         fakeTwitter.receivedAn(acknowledgementStatusUpdate);
+    }
+
+    @Before
+    public void before() {
+        fakeTwitter = new FakeTwitter(wireMockService);
+    }
+
+    @After
+    public void after() {
+        fakeTwitter.stop();
     }
 }
