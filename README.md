@@ -2,6 +2,8 @@
 
 Coming soon
 
+![Tweetizer](https://github.com/namuan/tweetizer/workflows/Tweetizer/badge.svg)
+
 ### Installation
 
 ### Usage
