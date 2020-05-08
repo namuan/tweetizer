@@ -6,10 +6,5 @@ dependencies {
 
 test {
 	useJUnitPlatform()
-
-	testLogging {
-		exceptionFormat = 'full'
-	}
-
 	failFast = true
 }
