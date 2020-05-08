@@ -1,8 +1,12 @@
 dependencies {
+	// spring
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	// External
+	// Twitter
 	implementation 'org.twitter4j:twitter4j-core:4.0.7'
 }

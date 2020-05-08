@@ -11,7 +11,9 @@ import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import twitter4j.StatusUpdate;
 
-@SpringBootTest(classes = TweetizerApplication.class)
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
+
+@SpringBootTest(webEnvironment = DEFINED_PORT, classes = TweetizerApplication.class)
 @CucumberContextConfiguration
 public class TwitterDigestSteps {
 

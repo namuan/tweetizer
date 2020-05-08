@@ -18,6 +18,9 @@ dependencies {
     functionalTestImplementation 'io.cucumber:cucumber-spring:5.7.0'
     functionalTestImplementation 'io.cucumber:cucumber-junit:5.7.0'
     functionalTestImplementation 'de.monochromata.cucumber:reporting-plugin:4.0.48'
+    functionalTestImplementation 'io.rest-assured:rest-assured:4.2.0'
+    functionalTestImplementation 'io.rest-assured:json-path:4.2.0'
+    functionalTestImplementation 'io.rest-assured:xml-path:4.2.0'
 }
 
 task functionalTest(type: Test, group: 'verification') {
