@@ -14,7 +14,6 @@ import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import twitter4j.StatusUpdate;
 
 import java.io.IOException;
 
@@ -32,10 +31,10 @@ public class TwitterDigestSteps {
     @Autowired
     private WireMockServer wireMockService;
 
-    @Given("a tagged tweet")
-    public void aTaggedTweet() throws IOException {
-        StatusUpdate statusUpdate = new StatusUpdate("Hello World");
-        fakeTwitter.postStatusWithMention(statusUpdate);
+    @Given("a tweet with mention")
+    public void aTweetWithMention() throws IOException {
+        fakeTwitter.stubRequestToGetMentionsTimeline();
+        fakeTwitter.stubRequestToUpdateStatus();
     }
 
     @When("the tweet is processed")
@@ -44,9 +43,8 @@ public class TwitterDigestSteps {
     }
 
     @Then("I should reply back with acknowledgement")
-    public void iShouldReplyBackWithAcknowledgement() {
-        StatusUpdate acknowledgementStatusUpdate = new StatusUpdate("Hello Back");
-        fakeTwitter.receivedAn(acknowledgementStatusUpdate);
+    public void iShouldReplyBackWithAcknowledgement() throws IOException {
+        fakeTwitter.verifyRequestReceivedForTweetReply();
     }
 
     @Before

@@ -1,0 +1,1 @@
+status=%40jd_who_wants_to_rollHere%20is%20your%20roll&in_reply_to_status_id=12345678765457886&include_entities=true&include_ext_alt_text=true&tweet_mode=extended

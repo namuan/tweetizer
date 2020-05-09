@@ -20,8 +20,10 @@ class TimelineCheckControllerShould {
 
     @Test
     void delegateToService() {
+        // WHEN
         controller.checkTimeline();
 
+        // THEN
         verify(timelineService).processMentions();
     }
 }

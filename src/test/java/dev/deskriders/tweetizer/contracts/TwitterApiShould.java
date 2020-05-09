@@ -18,18 +18,23 @@ public class TwitterApiShould {
 
     @Test
     void getMentionsTimeline() throws TwitterException {
+        // WHEN
         ResponseList<Status> homeTimeline = twitter.getMentionsTimeline();
 
+        // THEN
         assertThat(homeTimeline).isNotEmpty();
     }
 
     @Test
     void replyBackToMentionedTweet() throws TwitterException {
+        // GIVEN
         StatusUpdate messageReplied = new StatusUpdate(status);
         messageReplied.inReplyToStatusId(inReplyToStatusId);
 
+        // WHEN
         Status status = twitter.updateStatus(messageReplied);
 
+        // THEN
         assertThat(status.getText()).isEqualTo(status);
     }
 }
